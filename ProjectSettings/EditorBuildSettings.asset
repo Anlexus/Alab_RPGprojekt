@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 228bb7bba30d1de449348a506e6bc05f
+  - enabled: 1
+    path: Assets/Scenes/Village1.unity
+    guid: 7bf22fdb267200745bf46e8633314782
+  - enabled: 1
+    path: Assets/Scenes/Village2.unity
+    guid: c73105a5276c844459fc3abf70c03719
+  - enabled: 1
+    path: Assets/Scenes/Village3.unity
+    guid: 580fedfdd526e964b83fd7f1d8343b3d
+  - enabled: 1
+    path: Assets/Scenes/Forest1.unity
+    guid: 4b800a75992f99242b9d91771ad0cf5d
+  - enabled: 1
+    path: Assets/Scenes/Forest2.unity
+    guid: c88a07093b5ef11419e7f84fcc5f2c3e
+  - enabled: 1
+    path: Assets/Scenes/Forest3.unity
+    guid: c4ba597ec19ca9e4e8b45855d38bfde1
+  - enabled: 1
+    path: Assets/Scenes/Cave1.unity
+    guid: d807d855a33c77e45b72a3aa4617603c
+  - enabled: 1
+    path: Assets/Scenes/Cave2.unity
+    guid: 12ee0554296f87842960cf16ae2f9460
+  - enabled: 1
+    path: Assets/Scenes/Cave3.unity
+    guid: 838af316e891f0d4dbc1fee453b74601
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_UseUCBPForAssetBundles: 0
