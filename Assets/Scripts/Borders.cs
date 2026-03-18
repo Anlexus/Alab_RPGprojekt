@@ -8,12 +8,11 @@ public class Borders : MonoBehaviour
     {
         
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            gameMaster.LoadGame();
+            gameMaster.LoadGame1();
         }
     }
     // Update is called once per frame

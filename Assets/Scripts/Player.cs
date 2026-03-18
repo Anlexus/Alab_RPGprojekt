@@ -18,13 +18,14 @@ public class Player : MonoBehaviour
     private Vector2 smoothMoveInput;
     private Vector2 moveInputSmoothVelocity;
     private Camera _cam;
-
-    int travel = 0;
+    public int playerHealth = 10;
+    public int pdmg = 1;
+    public int travel;
+    public GameObject swordSwing;
     static GameObject playerCharacter;
 
     void Start()
-    {
-        
+    {        
         rb = GetComponent<Rigidbody2D>();
         _cam = Camera.main;
 
@@ -33,20 +34,13 @@ public class Player : MonoBehaviour
             playerCharacter = gameObject;
 
             DontDestroyOnLoad(playerCharacter);
-
-
         }
         else
         {
             Destroy(gameObject);
         }
     }
-
-    void OnSceneLoaded()
-    {
-
-    }
-
+    
     void Update()
     {
 
@@ -63,11 +57,22 @@ public class Player : MonoBehaviour
             ref moveInputSmoothVelocity,
             0.1f);
 
-            rb.linearVelocity = smoothMoveInput * moveSpeed;
+            rb.linearVelocity = smoothMoveInput * moveSpeed;            
+        }
 
-            
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            swordSwing.SetActive(true);
+            StartCoroutine(CoolDown());            
         }
         NoOffScreen();
+        Debug.DrawLine(transform.position, transform.position + transform.right * 10, Color.black);
+    }
+
+    IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(2);
+        swordSwing.SetActive(false);
     }
 
     private void NoOffScreen()
@@ -89,5 +94,15 @@ public class Player : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void TakingDamage(int damageTaken = 1)
+    {
+        playerHealth = playerHealth - damageTaken;
+
+        if (playerHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
