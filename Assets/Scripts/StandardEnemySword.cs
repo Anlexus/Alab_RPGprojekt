@@ -9,11 +9,7 @@ public class StandardEnemySword : MonoBehaviour
     {
         
     }
-
-    void Update()
-    {
-        
-    }
+   
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Hit");
@@ -21,7 +17,7 @@ public class StandardEnemySword : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<Player>().TakingDamage(EnSwordDMG);
-            Destroy(gameObject);
+            
         }
     }
 }

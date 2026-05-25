@@ -6,7 +6,7 @@ public class StandardNPC : MonoBehaviour
     bool playerDetection = false;
     public GameObject d_template;
     public GameObject canva;
-    int X;
+    
     
     void Update()
     {        
@@ -15,6 +15,7 @@ public class StandardNPC : MonoBehaviour
             canva.SetActive(true);
             Player.Dialogue = true;
             NewDialogue("Hello Guy");
+            NewDialogue("Welcome to Torchquest");
             canva.transform.GetChild(1).gameObject.SetActive(true);
         }       
         
@@ -37,6 +38,6 @@ public class StandardNPC : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        playerDetection = false;
+        playerDetection = false;       
     }
 }

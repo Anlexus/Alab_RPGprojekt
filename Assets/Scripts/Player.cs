@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float screenBorder;
+
+    [SerializeField]
+    private Animator animator;
 
     static public bool Dialogue = false;
     private Rigidbody2D rb;
@@ -24,21 +28,31 @@ public class Player : MonoBehaviour
     public GameObject swordSwing;
     static GameObject playerCharacter;
 
+    public int torch = 0;
+
     void Start()
     {        
         rb = GetComponent<Rigidbody2D>();
-        _cam = Camera.main;
+        //_cam = Camera.main;
+        if(_cam == null)
+        {
+            _cam = FindFirstObjectByType<Camera>();
+        }
+        
+        UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
 
         if (playerCharacter == null)
         {
             playerCharacter = gameObject;
 
             DontDestroyOnLoad(playerCharacter);
+            
         }
         else
         {
             Destroy(gameObject);
         }
+        
     }
     
     void Update()
@@ -55,15 +69,32 @@ public class Player : MonoBehaviour
             smoothMoveInput,
             moveInput,
             ref moveInputSmoothVelocity,
-            0.1f);
+            0f);
 
             rb.linearVelocity = smoothMoveInput * moveSpeed;            
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            animator.SetBool("WalkingRight", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            animator.SetBool("WalkingRight", false);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            animator.SetBool("WalkingLeft", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.A))
+        {
+            animator.SetBool("WalkingLeft", false);
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             swordSwing.SetActive(true);
-            StartCoroutine(CoolDown());            
+            StartCoroutine(CoolDown());
         }
         NoOffScreen();
         Debug.DrawLine(transform.position, transform.position + transform.right * 10, Color.black);
@@ -103,6 +134,15 @@ public class Player : MonoBehaviour
         if (playerHealth <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {       
+
+        if (other.tag == "Torch")
+        {
+            torch += 1;
+
         }
     }
 }

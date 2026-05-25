@@ -4,14 +4,39 @@ using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
+    public static GameMaster instance;
     int tcount;
     private float screenBorder;
     private Camera _cam;
-    int eon = 0;    
+    private GameObject Gamemaster;
+    int score = 0;    
     void Start()
     {
         _cam = GetComponent<Camera>();
-                   
+        instance = this;
+
+        if (Gamemaster == null)
+        {
+            Gamemaster = gameObject;
+
+            DontDestroyOnLoad(Gamemaster);
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Addpoint()
+    {        
+        score += 1;
+        
+         if (score == 3)
+        {
+            Debug.Log("Loading scene");
+            SceneManager.LoadScene(10);
+        }
     }
 
     public void LoadGame1()
@@ -26,7 +51,7 @@ public class GameMaster : MonoBehaviour
 
             if (scene.buildIndex == 0)
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(1);                  
             }
             else if (scene.buildIndex == 1)
             {

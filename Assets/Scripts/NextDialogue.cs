@@ -1,28 +1,40 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine.VFX;
 public class NewDialogue : MonoBehaviour
 {
-    int index = 1;
+    int index = 0;
+    private void Start()
+    {
+        
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q) && transform.childCount > 1)
         {
-            if (Player.Dialogue)
+            if (Player.Dialogue && index <= 2)
             {
                 transform.GetChild(index).gameObject.SetActive(true);
                 index += 1;
                 if (transform.childCount == index)
                 {
-                    index = 2;
+                    
                     Player.Dialogue = false;
                     
                 }
+                
             }
+            
             else
             {
+                Debug.Log("Tobbe");
+                Player.Dialogue = false;
                 gameObject.SetActive(false);
-                index = 1;
+                index = 0;
+                
+
             }
         }
         

@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cave3.unity
     guid: 838af316e891f0d4dbc1fee453b74601
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: e3edea69af7935845a20cde4703de9ce
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
