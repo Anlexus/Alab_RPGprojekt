@@ -6,6 +6,7 @@ using UnityEngine.VFX;
 public class NewDialogue : MonoBehaviour
 {
     int index = 0;
+    public GameObject currentAgent; //Lagra NPCN vi pratar med
     private void Start()
     {
         
@@ -31,8 +32,9 @@ public class NewDialogue : MonoBehaviour
             {
                 Debug.Log("Tobbe");
                 Player.Dialogue = false;
-                gameObject.SetActive(false);
+                currentAgent.GetComponent<StandardNPC>().EndDialogue();
                 index = 0;
+                gameObject.SetActive(false);
                 
 
             }
